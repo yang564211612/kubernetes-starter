@@ -7,6 +7,18 @@
 ## [三、完整集群部署 - kubernetes-with-ca][3]
 ## [四、在kubernetes上部署我们的微服务][4]
 
+# 修改docker的cgroup驱动
+# kubelet
+# 看到最后一行：error: failed to run Kubelet: failed to create kubelet: misconfiguration: kubelet cgroup driver: "cgroupfs" is different from docker cgroup driver: "systemd"
+
+
+# vim /lib/systemd/system/docker.service
+# 将 --exec-opt native.cgroupdriver=systemd  修改为：
+#  --exec-opt native.cgroupdriver=cgroupfs
+# systemctl daemon-reload 
+# systemctl restart docker.service
+# kubelet显示正常
+--------------------- 
 
 
 
